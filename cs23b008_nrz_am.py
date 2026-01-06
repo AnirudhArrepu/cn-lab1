@@ -7,4 +7,14 @@ def nrz(seq: np.array, bps: int) -> np.array:
     seq = seq*2 - 1
     return np.repeat(seq, bps)
 
-print(nrz(seq, 200))
+msg = nrz(seq, 200)
+print(f"nrz encoding for seq {seq}: {msg}")
+print(len(msg))
+
+def sin_carrier_wave(fc: int, dur:int = 0.1, sam_rate: int =1000)->np.array:
+    x = np.linspace(0, dur, int(sam_rate*dur))
+    y = np.sin(2*np.pi*fc*x)
+    return y
+
+sin_wave = sin_carrier_wave(20)
+
