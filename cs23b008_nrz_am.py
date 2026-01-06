@@ -18,3 +18,9 @@ def sin_carrier_wave(fc: int, dur:int = 0.1, sam_rate: int =1000)->np.array:
 
 sin_wave = sin_carrier_wave(20)
 
+def amp_mod(sin_wave: np.array, msg_nrz: np.array)->np.array:
+    sin_wave = np.repeat(sin_wave, int(np.ceil(len(msg_nrz)/len(sin_wave))))[:len(msg_nrz)]
+    return sin_wave*msg_nrz
+
+amp_wave = amp_mod(sin_wave, msg)
+
